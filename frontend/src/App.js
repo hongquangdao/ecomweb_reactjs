@@ -15,7 +15,7 @@ import PlaceOrderScreen from "./screens/PlaceOrderScreen";
 import OrderScreen from "./screens/OrderScreen";
 import NotFound from "./screens/NotFound";
 import 'react-toastify/dist/ReactToastify.css';
-import PrivateRouter from "./screens/PrivateRouter";
+import PrivateRouter from "./PrivateRouter";
 import BuidPC from "./screens/BuidPC";
 import Sale from "./screens/Sale";
 

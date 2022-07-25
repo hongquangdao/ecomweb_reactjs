@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import $ from "jquery";
+import { useDispatch } from "react-redux";
+import { logout } from "../Redux/Actions/userActions";
 
 const Header = () => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     $("[data-trigger]").on("click", function (e) {
       e.preventDefault();
@@ -21,6 +25,10 @@ const Header = () => {
       }
     });
   }, []);
+
+  const logoutHandle = () => {
+    dispatch(logout())
+  }
 
   return (
     <header className="main-header navbar">
@@ -65,7 +73,7 @@ const Header = () => {
           </li>
           <li className="nav-item">
             <Link className="nav-link" to="#">
-              English
+              Vietnamese
             </Link>
           </li>
           <li className="dropdown nav-item">
@@ -83,7 +91,7 @@ const Header = () => {
               <Link className="dropdown-item" to="#">
                 Cài đặt
               </Link>
-              <Link className="dropdown-item text-danger" to="#">
+              <Link onClick={logoutHandle} className="dropdown-item text-danger" to="#">
                 Đăng xuất
               </Link>
             </div>

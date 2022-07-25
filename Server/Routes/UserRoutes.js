@@ -1,6 +1,6 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
-import protect from "../Middleware/authMiddleware.js";
+import { protect, admin } from "../Middleware/authMiddleware.js";
 import User from "../Models/UserModel.js";
 import generateToken from "../Util/generateToken.js";
 
@@ -34,8 +34,8 @@ userRouter.get(
     "/profile",
     protect,
     asyncHandler(async (req, res) => {
+        // res.json("profile")
         const user = await User.findById(req.user._id);
-
         if (user) {
             res.json({
                 _id: user._id,
@@ -113,5 +113,11 @@ userRouter.put(
         }
     })
 );
+
+// GET ALL USER ADMIN
+userRouter.get("/", protect, admin, asyncHandler(async (req, res) => {
+    const users = await User.find({});
+    res.json(users)
+}))
 
 export default userRouter;

@@ -1,6 +1,6 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
-import protect from "../Middleware/AuthMiddleware.js";
+import { admin, protect } from "../Middleware/AuthMiddleware.js";
 import Products from "../Models/ProductModel.js";
 
 const productRoute = express.Router();
@@ -24,6 +24,16 @@ productRoute.get(
             .skip(pageSize * (page - 1))
             .sort({ _id: -1 });
         res.json({ products, page, pages: Math.ceil(count / pageSize) });
+    })
+);
+
+//ADMIN GET ALL PRODUCT
+productRoute.get("/all",
+    protect,
+    admin,
+    asyncHandler(async (req, res) => {
+        const products = await Products.find({}).sort({ _id: -1 });
+        res.json(products)
     })
 );
 
@@ -71,6 +81,23 @@ productRoute.post(
         } else {
             res.status(404);
             throw new Error("Không tim thấy sản phẩm")
+        }
+    })
+)
+
+//DELETE PRODUCT
+productRoute.delete(
+    "/:id",
+    protect,
+    admin,
+    asyncHandler(async (req, res) => {
+        const product = await Products.findById(req.params.id);
+        if (product) {
+            await product.remove();
+            res.json({ message: "Product deleted" })
+        } else {
+            res.status(404);
+            throw new Error("Product Not Found")
         }
     })
 )
