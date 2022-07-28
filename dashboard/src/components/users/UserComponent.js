@@ -10,6 +10,7 @@ const UserComponent = () => {
 
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
+  // console.log(userList);
 
   useEffect(() => {
     dispatch(listUser())

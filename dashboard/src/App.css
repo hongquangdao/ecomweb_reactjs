@@ -501,6 +501,7 @@ a.itemside:hover .title {
 }
 .card-product-grid .info-wrap {
   padding: 1.8rem;
+  text-align: center;
 }
 .card-product-grid a.title {
   color: #6c757d;
