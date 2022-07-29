@@ -29,7 +29,7 @@ const CreateCategory = () => {
         </div>
 
         <div className="d-grid">
-          <button className="btn btn-primary py-3">Create category</button>
+          <button className="btn btn-primary py-3 btn-brown">Create category</button>
         </div>
       </form>
     </div>

@@ -30,7 +30,7 @@ const Sidebar = () => {
                 to="/"
                 exact={true}
               >
-                <i className="icon fas fa-home"></i>
+                <i id="icon_dashboar" className="icon fas fa-home"></i>
                 <span className="text">Dashboard</span>
               </NavLink>
             </li>
@@ -40,7 +40,7 @@ const Sidebar = () => {
                 className="menu-link"
                 to="/products"
               >
-                <i className="icon fas fa-shopping-bag"></i>
+                <i id="icon_product" className="icon fas fa-shopping-bag"></i>
                 <span className="text">Sản phẩm</span>
               </NavLink>
             </li>
@@ -50,7 +50,7 @@ const Sidebar = () => {
                 className="menu-link"
                 to="/addproduct"
               >
-                <i className="icon fas fa-cart-plus"></i>
+                <i id="icon-cart" className="icon fas fa-cart-plus"></i>
                 <span className="text">Thêm sản phẩm</span>
               </NavLink>
             </li>
@@ -60,7 +60,7 @@ const Sidebar = () => {
                 className="menu-link"
                 to="/category"
               >
-                <i className="icon fas fa-list"></i>
+                <i id="icon-list" className="icon fas fa-list"></i>
                 <span className="text">Danh mục</span>
               </NavLink>
             </li>
@@ -70,7 +70,7 @@ const Sidebar = () => {
                 className="menu-link"
                 to="/orders"
               >
-                <i className="icon fas fa-bags-shopping"></i>
+                <i id="icon-order" className="icon fas fa-bags-shopping"></i>
                 <span className="text">Đơn hàng</span>
               </NavLink>
             </li>
@@ -80,7 +80,7 @@ const Sidebar = () => {
                 className="menu-link"
                 to="/users"
               >
-                <i className="icon fas fa-user"></i>
+                <i id="icon-user" className="icon fas fa-user"></i>
                 <span className="text">Người dùng</span>
               </NavLink>
             </li>

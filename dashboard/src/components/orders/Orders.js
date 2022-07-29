@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Orders = () => {
+const Orders = (props) => {
+
+  const { orders } = props;
+
   return (
     <table className="table">
       <thead>

@@ -1,6 +1,6 @@
 import express from "express";
 import asyncHandler from "express-async-handler";
-import {protect} from "../Middleware/authMiddleware.js";
+import { admin, protect } from "../Middleware/authMiddleware.js";
 import Order from "../Models/OrderModel.js";
 
 const orderRoutes = express.Router();
@@ -38,6 +38,19 @@ orderRoutes.post(
     })
 );
 
+//ADMIN GET ALL ORDERS
+orderRoutes.get(
+    "/all",
+    protect,
+    admin,
+    asyncHandler(async (req, res) => {
+        const orders = await Order.find()
+            .sort({ _id: -1 })
+            .populate("user", "id name email")
+        res.json(orders);
+    })
+);
+
 //GET ORDER BY ID
 orderRoutes.get(
     "/:id",
@@ -45,7 +58,7 @@ orderRoutes.get(
     asyncHandler(async (req, res) => {
         const order = await Order.findById(req.params.id).populate(
             "user",
-            "name email",
+            "id name email ",
         );
         if (order) {
             res.json(order);
@@ -89,5 +102,8 @@ orderRoutes.put(
         }
     })
 );
+
+
+
 
 export default orderRoutes

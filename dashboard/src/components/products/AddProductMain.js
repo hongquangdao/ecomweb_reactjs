@@ -44,18 +44,23 @@ const AddProductMain = () => {
     dispatch(createProduct(name, price, description, image, countInstock));
   }
 
+  const handleImage = (e) => {
+    const file = e.target.file[0];
+    console.log(file);
+  }
+
   return (
     <>
       <Toast />
       <section className="content-main" style={{ maxWidth: "1200px" }}>
         <form onSubmit={submitHandler}>
           <div className="content-header">
-            <Link to="/products" className="btn btn-danger text-white">
+            <Link to="/products" className="btn btn-brown text-white">
               Đi tới sản phẩm
             </Link>
             <h2 className="content-title">Thêm sản phẩm</h2>
             <div>
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-brown">
                 Publish now
               </button>
             </div>
@@ -131,7 +136,7 @@ const AddProductMain = () => {
                       value={image}
                       onChange={(e) => setImage(e.target.value)}
                     />
-                    <input className="form-control mt-3" type="file" />
+                    <input className="form-control mt-3" type="file" onChange={handleImage} />
                   </div>
                 </div>
               </div>
