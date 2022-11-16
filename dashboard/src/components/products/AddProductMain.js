@@ -45,8 +45,9 @@ const AddProductMain = () => {
   }
 
   const handleImage = (e) => {
-    const file = e.target.file[0];
-    console.log(file);
+    const file = e.target.files[0]; 
+    file.imgsrc = URL.createObjectURL(file);
+    setImage(file.imgsrc)
   }
 
   return (
@@ -61,7 +62,7 @@ const AddProductMain = () => {
             <h2 className="content-title">Thêm sản phẩm</h2>
             <div>
               <button type="submit" className="btn btn-brown">
-                Publish now
+                Áp dụng
               </button>
             </div>
           </div>
@@ -132,11 +133,13 @@ const AddProductMain = () => {
                     <input
                       className="form-control"
                       type="text"
-                      placeholder="Inter Image URL"
+                      placeholder="Enter Image URL"
                       value={image}
                       onChange={(e) => setImage(e.target.value)}
                     />
-                    <input className="form-control mt-3" type="file" onChange={handleImage} />
+                    <input className="form-control mt-3"
+                      type="file"
+                      onChange={handleImage} />
                   </div>
                 </div>
               </div>
