@@ -44,7 +44,7 @@ orderRoutes.get(
     protect,
     admin,
     asyncHandler(async (req, res) => {
-        const orders = await Order.find()
+        const orders = await Order.find({})
             .sort({ _id: -1 })
             .populate("user", "id name email")
         res.json(orders);

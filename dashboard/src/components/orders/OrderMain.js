@@ -6,7 +6,7 @@ import Orders from "./Orders";
 
 const OrderMain = () => {
 
-  const orderList = useSelector((state) => state.orderList);
+  const orderList = useSelector((state) => state.orderListReducer);
   const { loading, error, orders } = orderList;
 
   return (

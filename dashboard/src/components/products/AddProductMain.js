@@ -45,9 +45,11 @@ const AddProductMain = () => {
   }
 
   const handleImage = (e) => {
-    const file = e.target.files[0]; 
-    file.imgsrc = URL.createObjectURL(file);
-    setImage(file.imgsrc)
+    if(!image) {
+      const file = e.target.files[0]; 
+      file.imgsrc = URL.createObjectURL(file);
+      setImage(file.imgsrc)
+    }
   }
 
   return (

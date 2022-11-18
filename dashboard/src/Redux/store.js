@@ -2,8 +2,8 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { userListReducer, userLoginReducer } from "./Reducers/userReducers";
-import { productCreateReducer, productDeleteReducer, productEditReducer, productListReducer, productUpdateReducer, productUpdatReducer } from "./Reducers/ProductReducers";
-import { orderListReducer } from "./Reducers/OrderReducres";
+import { productCreateReducer, productDeleteReducer, productEditReducer, productListReducer, productUpdateReducer } from "./Reducers/ProductReducers";
+import { orderDetailReducer, orderListReducer } from "./Reducers/OrderReducres";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -13,7 +13,8 @@ const reducer = combineReducers({
   productCreate: productCreateReducer,
   productEdit: productEditReducer,
   productUpdate: productUpdateReducer,
-  orderList: orderListReducer,
+  orderListReducer: orderListReducer,
+  orderDetailReducer:orderDetailReducer,
 });
 
 // login
@@ -26,6 +27,7 @@ const initialState = {
 };
 
 const middleware = [thunk];
+
 
 const store = createStore(
   reducer,

@@ -26,11 +26,8 @@ function App() {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-  console.log(userInfo);
-
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
-        console.log("Admin");
         dispatch(listProduct());
         dispatch(listOrders());
     } 
@@ -45,7 +42,7 @@ function App() {
           <PrivateRouter path="/products" component={ProductScreen} />
           <PrivateRouter path="/category" component={CategoriesScreen} />
           <PrivateRouter path="/orders" component={OrderScreen} />
-          <PrivateRouter path="/order" component={OrderDetailScreen} />
+          <PrivateRouter path="/order/:id" component={OrderDetailScreen} />
           <PrivateRouter path="/addproduct" component={AddProduct} />
           <PrivateRouter path="/users" component={UsersScreen} />
           <PrivateRouter path="/product/:id/edit" component={ProductEditScreen} />
