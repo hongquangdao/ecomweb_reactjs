@@ -103,7 +103,23 @@ orderRoutes.put(
     })
 );
 
-
-
+// ORDER IS PAID
+orderRoutes.put(
+    "/:id/delivered",
+    protect,
+    asyncHandler(async (req, res) => {
+        const order = await Order.findById(req.params.id);
+        if (order) {
+            order.isDelivered = true;
+            order.deliveredAt = Date.now();
+            
+            const updateOrder = await order.save();
+            res.json(updateOrder);
+        } else {
+            res.status(404);
+            throw new Error("Không tìm thấy Order");
+        }
+    })
+);
 
 export default orderRoutes

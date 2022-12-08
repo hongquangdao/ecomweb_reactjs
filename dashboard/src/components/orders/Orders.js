@@ -49,7 +49,7 @@ const Orders = (props) => {
               </td>
               <td>
                 <span className="badge rounded-pill alert-success">
-                   {moment(order.creatAt).locale('vi').format('MMM Do YYYY')}
+                   {moment(order.createdAt).locale('vi').format('MMM Do YYYY')}
                 </span>
               </td>
               <td>

@@ -3,7 +3,7 @@ import OrderDetailProducts from "./OrderDetailProducts";
 import OrderDetailInfo from "./OrderDetailInfo";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrderDetails } from "../../Redux/Actions/OrderActions";
+import { deliverOrder, getOrderDetails } from "../../Redux/Actions/OrderActions";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 import moment from "moment";
@@ -11,15 +11,21 @@ import 'moment/locale/vi';
 
 const OrderDetailmain = (props) => {
   const { orderId } = props
-  console.log(orderId);
   const dispatch = useDispatch()
 
   const orderDetals = useSelector((state) => state.orderDetailReducer);
   const { loading, error, order } = orderDetals;
 
+  const orderDelivered = useSelector((state) => state.orderDelivered);
+  const { loading: loadingDelivered, success: successDelivered } = orderDelivered;
+
   useEffect(() => {
     dispatch(getOrderDetails(orderId))
-  }, [dispatch, orderId])
+  }, [dispatch, orderId, successDelivered])
+
+  const deliverHandler = () => {
+    dispatch(deliverOrder(order))
+  }
 
   return (
     <section className="content-main">
@@ -76,9 +82,25 @@ const OrderDetailmain = (props) => {
                   {/* Payment Info */}
                   <div className="col-lg-3">
                     <div className="box shadow-sm bg-light">
-                      <button className="btn btn-dark col-12">
-                        MARK AS DELIVERED
-                      </button>
+                      {
+                        order.isDelivered ? (
+                          <button className="btn btn-success col-12">
+                            DELIVERED AT ({" "}{moment(order.isDeliveredAt).format('MMM Do YY')})
+                          </button>
+                        ) :
+                          (
+                            <>
+                              {
+                                loadingDelivered && <Loading />
+                              }
+                              <button
+                                onClick={deliverHandler}
+                                className="btn btn-dark col-12">
+                                MARK AS DELIVERED
+                              </button>
+                            </>
+                          )
+                      }
                     </div>
                   </div>
                 </div>
